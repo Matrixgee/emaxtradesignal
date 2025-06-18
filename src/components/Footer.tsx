@@ -1,4 +1,4 @@
-
+import logo from '../assets/EMAXLOGO.png'
 import {
   Mail,
   Phone,
@@ -7,7 +7,6 @@ import {
   Linkedin,
   Facebook,
   Shield,
-  TrendingUp,
   Users,
   Award,
 } from "lucide-react";
@@ -20,12 +19,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <TrendingUp className="h-8 w-8 text-blue-600" />
-              <h3 className="text-xl font-bold text-slate-800">
-                Emax Signal Trade
-              </h3>
-            </div>
+            <div className="flex items-center mb-[23px] gap-2 cursor-pointer">
+          <img src={logo} alt="" className="h-[80px] w-[95px]" />
+        </div>
             <p className="text-slate-600 text-sm leading-relaxed">
               Your trusted partner in building wealth through smart investment
               strategies. Empowering investors with expert insights and
