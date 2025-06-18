@@ -6,7 +6,10 @@ import Login from "../auth/login";
 import Register from "../auth/register";
 import UserDashboardLayout from "../Layout/userdashbaordlayout";
 import Overview from "../Clients/overview";
-
+import About from "../page/About";
+import ContactUs from "../page/ContactUs";
+import PlansSection from "../page/PlansSection";
+import ServicesSection from "../page/ServicesSection";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -18,20 +21,20 @@ export const MainRoutes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:"about",
-        element:<About/>
+        path: "about",
+        element: <About />,
       },
       {
-        path:"contact",
-        element:<ContactUs/>
+        path: "contact",
+        element: <ContactUs />,
       },
       {
-        path:"plans",
-        element:<PlansSection/>
+        path: "plans",
+        element: <PlansSection />,
       },
       {
-        path:"services",
-        element:<ServicesSection/>
+        path: "services",
+        element: <ServicesSection />,
       },
     ],
   },
@@ -53,5 +56,4 @@ export const MainRoutes = createBrowserRouter([
       },
     ],
   },
-
 ]);
