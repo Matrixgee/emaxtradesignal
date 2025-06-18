@@ -1,13 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Homelayout from "../Layout/Homelayout";
 import Home from "../page/Home";
-import About from "../page/About";
-import ContactUs from "../page/ContactUs";
-import PlansSection from "../page/PlansSection";
-import ServicesSection from "../page/ServicesSection";
-import LoginForm from "../Auth/LoginForm";
-import RegisterForm from "../Auth/RegisterForm";
-import AuthLayout from "../Layout/AuthLayout";
+
+import Login from "../auth/login";
+import Register from "../auth/register";
+import UserDashboardLayout from "../Layout/userdashbaordlayout";
+import Overview from "../Clients/overview";
+
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -37,16 +36,22 @@ export const MainRoutes = createBrowserRouter([
     ],
   },
   {
-    element:<AuthLayout/>,
-    children:[
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "signup",
+    element: <Register />,
+  },
+  {
+    path: "user",
+    element: <UserDashboardLayout />,
+    children: [
       {
-        path:"login",
-        element:<LoginForm/>
+        path: "overview",
+        element: <Overview />,
       },
-      {
-        path:"register",
-        element:<RegisterForm/>
-      }
-    ]
-  }
+    ],
+  },
+
 ]);

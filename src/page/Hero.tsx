@@ -175,9 +175,9 @@ const Hero = () => {
               {/* Dashboard Header */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-blue400 rounded-full"></div>
                   <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
                 </div>
                 <div className="text-xs text-gray-500">
                   Live Trading Dashboard
@@ -190,7 +190,7 @@ const Hero = () => {
                   <div className="text-sm font-semibold text-gray-700">
                     Portfolio Performance
                   </div>
-                  <div className="text-green-600 text-sm font-bold">+24.5%</div>
+                  <div className="text-blue-600 text-sm font-bold">+24.5%</div>
                 </div>
 
                 {/* Animated Chart Bars */}
@@ -226,21 +226,21 @@ const Hero = () => {
                     <div className="flex items-center space-x-2">
                       <div
                         className={`w-2 h-2 rounded-full ${
-                          signal.type === "BUY" ? "bg-green-400" : "bg-red-400"
+                          signal.type === "BUY" ? "bg-blue-400" : "bg-blue400"
                         } animate-pulse`}
                       ></div>
                       <span className="text-xs font-medium">{signal.pair}</span>
                       <span
                         className={`text-xs px-2 py-1 rounded ${
                           signal.type === "BUY"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-blue100 text-blue700"
                         }`}
                       >
                         {signal.type}
                       </span>
                     </div>
-                    <div className="text-xs font-bold text-green-600">
+                    <div className="text-xs font-bold text-blue-600">
                       {signal.profit}
                     </div>
                   </div>
@@ -249,7 +249,7 @@ const Hero = () => {
             </div>
 
             {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 bg-green-500 text-white p-3 rounded-full shadow-lg animate-bounce">
+            <div className="absolute -top-4 -right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg animate-bounce">
               <TrendingUp className="w-6 h-6" />
             </div>
 
