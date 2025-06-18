@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
-import logo from "../assets/react.svg";
+import logo from "../assets/EMAXLOGO.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "../config/axiosconfig";
@@ -98,7 +98,7 @@ const Register = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <img src={logo} alt="" className="h-[50px] w-[95px]" />
+          <img src={logo} alt="" className="h-[80px] w-[95px]" />
         </motion.div>
 
         {/* Title */}
