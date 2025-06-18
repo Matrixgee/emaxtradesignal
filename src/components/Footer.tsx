@@ -1,3 +1,4 @@
+
 import {
   Mail,
   Phone,
@@ -95,10 +96,13 @@ const Footer = () => {
                   >
                     {resource}
                   </a>
+
+
                 </li>
               ))}
             </ul>
           </div>
+
 
           {/* Contact Info */}
           <div className="space-y-4">
@@ -158,10 +162,12 @@ const Footer = () => {
                 <div className="text-slate-600 text-xs">
                   Excellence in Service
                 </div>
+
               </div>
             </div>
           </div>
         </div>
+
       </div>
 
       {/* Bottom Bar */}
@@ -198,10 +204,11 @@ const Footer = () => {
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
+export default Footer
