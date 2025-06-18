@@ -1,195 +1,266 @@
-// import React, { useState, useEffect, useRef } from "react";
-// import { Check, X, ArrowRight, Star } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  ArrowRight,
+  Star,
+  TrendingUp,
+  Zap,
+  Crown,
+  Sparkles,
+} from "lucide-react";
 
-// const PricingPlans = () => {
-//   // Removed unused isVisible state
-//   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
-//   const [billingCycle] = useState("monthly");
-//   const [visibleCards, setVisibleCards] = useState(new Set());
-//   const sectionRef = useRef(null);
+const PricingPlans = () => {
+  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
+  const [visibleCards, setVisibleCards] = useState(new Set());
+  const sectionRef = useRef<HTMLElement>(null);
 
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       (entries) => {
-//         entries.forEach((entry) => {
-//           if (entry.isIntersecting) {
-//             setTimeout(() => {
-//               [0, 1, 2].forEach((index) => {
-//                 setTimeout(() => {
-//                   setVisibleCards((prev) => new Set([...prev, index]));
-//                 }, index * 200);
-//               });
-//             }, 300);
-//           }
-//         });
-//       },
-//       { threshold: 0.1 }
-//     );
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              [0, 1, 2].forEach((index) => {
+                setTimeout(() => {
+                  setVisibleCards((prev) => new Set([...prev, index]));
+                }, index * 150);
+              });
+            }, 200);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-//     if (sectionRef.current) {
-//       observer.observe(sectionRef.current);
-//     }
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
-//     return () => observer.disconnect();
-//   }, []);
+    return () => observer.disconnect();
+  }, []);
 
-//   type Feature = {
-//     text: string;
-//     included: boolean;
-//   };
+  type Plan = {
+    name: string;
+    description: string;
+    minInvestment: number;
+    maxInvestment: number;
+    expectedReturn: string;
+    managementFee: string;
+    badge?: string;
+    color: string;
+    icon: React.ElementType;
+    cta: string;
+    popular?: boolean;
+  };
 
-//   type Plan = {
-//     name: string;
-//     description: string;
-//     monthlyPrice: number;
-//     yearlyPrice: number;
-//     discount?: string;
-//     badge?: string;
-//     color: string;
-//     icon: React.ElementType;
-//     cta: string;
-//     features: Feature[];
-//     popular?: boolean;
-//   };
+  const plans: Plan[] = [
+    {
+      name: "Starter Plan",
+      description: "Perfect for beginners starting their investment journey",
+      minInvestment: 1000,
+      maxInvestment: 50000,
+      expectedReturn: "8-12% annually",
+      managementFee: "1.5%",
+      color: "from-blue-400 to-cyan-300",
+      icon: TrendingUp,
+      cta: "Start Investing",
+    },
+    {
+      name: "Growth Plan",
+      description: "Advanced strategies for experienced investors",
+      minInvestment: 50000,
+      maxInvestment: 250000,
+      expectedReturn: "12-18% annually",
+      managementFee: "1.2%",
+      badge: "Most Popular",
+      color: "from-cyan-400 to-blue-400",
+      icon: Zap,
+      cta: "Scale Your Portfolio",
+      popular: true,
+    },
+    {
+      name: "Premium Plan",
+      description: "Exclusive high-yield opportunities for serious investors",
+      minInvestment: 250000,
+      maxInvestment: 600000,
+      expectedReturn: "18-25% annually",
+      managementFee: "1.0%",
+      badge: "Elite",
+      color: "from-blue-500 to-cyan-400",
+      icon: Crown,
+      cta: "Go Premium",
+    },
+  ];
 
-//   const plans: Plan[] = [
-//     /* ... same plans as before ... */
-//   ];
+  const formatPrice = (amount: number) => {
+    if (amount >= 1000000) {
+      return `$${(amount / 1000000).toFixed(1)}M`;
+    } else if (amount >= 1000) {
+      return `$${(amount / 1000).toFixed(0)}K`;
+    }
+    return `$${amount.toLocaleString()}`;
+  };
 
-//   const getPrice = (plan: Plan) =>
-//     billingCycle === "monthly" ? plan.monthlyPrice : plan.yearlyPrice;
-//   const getMonthlyPrice = (plan: Plan) =>
-//     billingCycle === "monthly"
-//       ? plan.monthlyPrice
-//       : Math.round(plan.yearlyPrice / 12);
+  return (
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen bg-gradient-to-br from-white via-blue-50 to-cyan-50 py-20 px-4 overflow-hidden"
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-40 left-1/2 transform -translate-x-1/2 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
+      </div>
 
-//   return (
-//     <section
-//       ref={sectionRef}
-//       className="py-20 bg-gradient-to-br from-blue-50 to-white relative overflow-hidden"
-//     >
-//       {/* ... background and header code ... */}
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-blue-200">
+            <Sparkles className="w-4 h-4 text-blue-600" />
+            <span className="text-blue-600 text-sm font-medium">
+              Investment Plans
+            </span>
+          </div>
 
-//       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-//         {plans.map((plan, index) => (
-//           <div
-//             key={plan.name}
-//             className={`relative group transform transition-all duration-700 ${
-//               visibleCards.has(index)
-//                 ? "translate-y-0 opacity-100 scale-100"
-//                 : "translate-y-10 opacity-0 scale-95"
-//             } ${hoveredPlan === index ? "scale-105" : ""} ${
-//               plan.popular ? "lg:-mt-4" : ""
-//             }`}
-//             onMouseEnter={() => setHoveredPlan(index)}
-//             onMouseLeave={() => setHoveredPlan(null)}
-//           >
-//             {plan.badge && (
-//               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-//                 <div
-//                   className={`bg-gradient-to-r ${plan.color} text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg`}
-//                 >
-//                   <Star className="w-4 h-4 inline mr-1" />
-//                   {plan.badge}
-//                 </div>
-//               </div>
-//             )}
+          <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+            Choose Your Investment Plan
+          </h2>
 
-//             <div
-//               className={`relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden ${
-//                 plan.popular
-//                   ? "border-2 border-blue-200"
-//                   : "border border-gray-100"
-//               }`}
-//             >
-//               <div
-//                 className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-//               ></div>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Tailored investment strategies designed to maximize your returns
+            across different investment levels
+          </p>
+        </div>
 
-//               <div className="relative p-8 pb-4">
-//                 <div
-//                   className={`w-16 h-16 bg-gradient-to-br ${plan.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-//                 >
-//                   <plan.icon className="w-8 h-8 text-white" />
-//                 </div>
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {plans.map((plan, index) => (
+            <div
+              key={plan.name}
+              className={`relative group transform transition-all duration-700 ${
+                visibleCards.has(index)
+                  ? "translate-y-0 opacity-100 scale-100"
+                  : "translate-y-20 opacity-0 scale-95"
+              } ${hoveredPlan === index ? "scale-105 z-10" : ""} ${
+                plan.popular ? "lg:-mt-8" : ""
+              }`}
+              onMouseEnter={() => setHoveredPlan(index)}
+              onMouseLeave={() => setHoveredPlan(null)}
+            >
+              {/* Popular badge */}
+              {plan.badge && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                  <div
+                    className={`bg-gradient-to-r ${plan.color} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg`}
+                  >
+                    <Star className="w-4 h-4 inline mr-1" />
+                    {plan.badge}
+                  </div>
+                </div>
+              )}
 
-//                 <h3 className="text-2xl font-bold text-gray-800 mb-2">
-//                   {plan.name}
-//                 </h3>
-//                 <p className="text-gray-600 text-sm mb-6">{plan.description}</p>
+              {/* Card */}
+              <div
+                className={`relative bg-white/90 backdrop-blur-lg rounded-3xl border transition-all duration-500 overflow-hidden ${
+                  plan.popular
+                    ? "border-blue-300 shadow-2xl shadow-blue-500/25"
+                    : "border-gray-200 hover:border-blue-200"
+                } ${
+                  hoveredPlan === index
+                    ? "shadow-2xl shadow-blue-500/25"
+                    : "shadow-xl"
+                }`}
+              >
+                {/* Gradient overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                ></div>
 
-//                 <div className="mb-6">
-//                   <div className="flex items-baseline space-x-2">
-//                     <span className="text-4xl font-bold text-gray-800">
-//                       ${getMonthlyPrice(plan)}
-//                     </span>
-//                     <span className="text-gray-500">/month</span>
-//                   </div>
-//                   {billingCycle === "yearly" && (
-//                     <div className="flex items-center space-x-2 mt-2">
-//                       <span className="text-sm text-gray-500 line-through">
-//                         ${plan.monthlyPrice}/month
-//                       </span>
-//                       <span className="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
-//                         {plan.discount}
-//                       </span>
-//                     </div>
-//                   )}
-//                   {billingCycle === "yearly" && (
-//                     <div className="text-sm text-gray-500 mt-1">
-//                       Billed annually (${getPrice(plan)})
-//                     </div>
-//                   )}
-//                 </div>
+                <div className="relative p-8">
+                  {/* Icon */}
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-br ${plan.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}
+                  >
+                    <plan.icon className="w-8 h-8 text-white" />
+                  </div>
 
-//                 <button
-//                   className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
-//                     plan.popular
-//                       ? `bg-gradient-to-r ${plan.color} text-white hover:shadow-blue-500/25`
-//                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-//                   }`}
-//                 >
-//                   <span className="flex items-center justify-center space-x-2">
-//                     <span>{plan.cta}</span>
-//                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-//                   </span>
-//                 </button>
-//               </div>
+                  {/* Plan name and description */}
+                  <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                    {plan.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-8 leading-relaxed">
+                    {plan.description}
+                  </p>
 
-//               <div className="p-8 pt-4 border-t border-gray-200">
-//                 <ul className="space-y-4">
-//                   {plan.features.map((feature, idx) => (
-//                     <li key={idx} className="flex items-center space-x-3">
-//                       {feature.included ? (
-//                         <Check className="text-green-500 w-5 h-5" />
-//                       ) : (
-//                         <X className="text-red-400 w-5 h-5" />
-//                       )}
-//                       <span
-//                         className={`text-sm ${
-//                           feature.included
-//                             ? "text-gray-700"
-//                             : "text-gray-400 line-through"
-//                         }`}
-//                       >
-//                         {feature.text}
-//                       </span>
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
+                  {/* Investment Range */}
+                  <div className="mb-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sm font-medium text-gray-500">
+                        Investment Range
+                      </span>
+                    </div>
+                    <div className="flex items-baseline space-x-2 mb-2">
+                      <span className="text-3xl font-bold text-gray-800">
+                        {formatPrice(plan.minInvestment)}
+                      </span>
+                      <span className="text-gray-500 text-lg">to</span>
+                      <span className="text-3xl font-bold text-gray-800">
+                        {formatPrice(plan.maxInvestment)}
+                      </span>
+                    </div>
+                  </div>
 
-// export default PricingPlans;
+                  {/* Returns & Fees */}
+                  <div className="space-y-4 mb-8">
+                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                      <span className="text-sm font-medium text-gray-700">
+                        Expected Return
+                      </span>
+                      <span className="text-sm font-bold text-blue-600">
+                        {plan.expectedReturn}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                      <span className="text-sm font-medium text-gray-700">
+                        Management Fee
+                      </span>
+                      <span className="text-sm font-bold text-blue-600">
+                        {plan.managementFee}
+                      </span>
+                    </div>
+                  </div>
 
-const Pricing = () => {
-  return <div>Pricing</div>;
+                  {/* CTA Button */}
+                  <button
+                    className={`w-full py-4 px-6 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
+                      plan.popular
+                        ? `bg-gradient-to-r ${plan.color} text-white hover:shadow-blue-500/50`
+                        : "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-blue-50 hover:to-cyan-50 hover:text-blue-700"
+                    }`}
+                  >
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>{plan.cta}</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center">
+          <p className="text-gray-600 mb-6">
+            Need a custom investment solution above $600K?
+          </p>
+          <button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-lg">
+            Contact Our Investment Team
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 };
 
-export default Pricing;
+export default PricingPlans;

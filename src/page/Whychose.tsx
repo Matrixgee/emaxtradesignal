@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
       description:
         "Your funds and data are protected with military-grade encryption and multi-factor authentication.",
       stats: "256-bit SSL",
-      color: "from-green-500 to-green-600",
+      color: "from-blue-500 to-blue-600",
     },
     {
       icon: Zap,
@@ -76,7 +76,7 @@ const WhyChooseUs = () => {
       description:
         "Recognized as the #1 trading platform by multiple financial publications and industry awards.",
       stats: "15+ Awards",
-      color: "from-red-500 to-red-600",
+      color: "from-blue500 to-blue600",
     },
     {
       icon: HeadphonesIcon,
@@ -98,7 +98,7 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden"
+      className="py-20 h-[100vh] bg-gradient-to-br from-gray-50  to-blue-50  overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
