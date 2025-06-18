@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Menu, X, TrendingUp, User, LogIn } from "lucide-react";
+import { Menu, X, User, LogIn } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from '../assets/EMAXLOGO.png'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,20 +38,7 @@ const Header = () => {
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3 group cursor-pointer">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <TrendingUp className="w-6 h-6 text-white" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
-              </div>
-              <div>
-                <h1 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                  Emax Signal Trade
-                </h1>
-                <p className="text-xs text-gray-500 hidden sm:block">
-                  Investment Excellence
-                </p>
-              </div>
+              <img src={logo} alt="" className="w-[80px] h-[70px]"/>
             </div>
 
             {/* Desktop Navigation */}
@@ -74,7 +62,7 @@ const Header = () => {
                 <User className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Login</span>
               </button>
-              <button onClick={()=>navigate("/register")} className="flex cursor-pointer items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <button onClick={()=>navigate("/signup")} className="flex cursor-pointer items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <LogIn className="w-4 h-4" />
                 <span>Get Started</span>
               </button>

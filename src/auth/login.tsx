@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import logo from "../assets/react.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../config/axiosconfig";
 import { useState } from "react";
@@ -8,6 +7,7 @@ import { isAxiosError } from "axios";
 import { useDispatch } from "react-redux";
 import { setAdminToken } from "../Global/AdminSlice";
 import { setToken, setUser } from "../Global/UserSlice";
+import logo from '../assets/EMAXLOGO.png'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const Login = () => {
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate("/")}
         >
-          <img src={logo} alt="" className="h-[50px] w-[95px]" />
+          <img src={logo} alt="" className="h-[80px] w-[95px]" />
         </motion.div>
         <h2 className="text-2xl font-bold text-blue-700 text-center mb-6">
           Welcome Back
@@ -141,7 +141,7 @@ const Login = () => {
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
           <Link
-            to="/register"
+            to="/signup"
             className="text-blue-600 font-medium hover:underline"
           >
             Sign up
