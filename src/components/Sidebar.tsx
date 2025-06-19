@@ -10,7 +10,7 @@ import {
   Headphones,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/react.svg";
+import logo from "../assets/EMAXLOGO.png";
 
 interface MenuItem {
   name: string;

@@ -16,7 +16,7 @@ const Overview = () => {
   const statsCards = [
     {
       title: "Total Balance",
-      value: `$$ "0.00"`,
+      value: `$ "0.00"`,
       icon: <ArrowUpRight className="text-green-400 w-6 h-6" />,
 
       color: "from-green-600/30 to-emerald-400/30",
@@ -89,7 +89,7 @@ const Overview = () => {
 
       {/* Fixed animated particles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-4 w-20 h-20 bg-red-400/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-10 left-4 w-20 h-20 bg-blue-400/10 rounded-full blur-xl animate-pulse"></div>
         <div className="absolute bottom-20 right-4 w-16 h-16 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-blue-500/5 rounded-full blur-xl animate-pulse delay-500"></div>
         <div className="absolute top-20 right-1/4 w-12 h-12 bg-blue-400/8 rounded-full blur-lg animate-pulse delay-300"></div>
@@ -114,7 +114,7 @@ const Overview = () => {
             {statsCards.map((card, index) => (
               <div
                 key={index}
-                className="bg-slate-900/40 backdrop-blur-sm border border-blue-500/20 rounded-xl p-6 hover:bg-slate-900/60 transition-all duration-300 hover:scale-105 hover:border-red-400/40 hover:shadow-lg hover:shadow-red-500/10"
+                className="bg-slate-900/40 backdrop-blur-sm border border-blue-500/20 rounded-xl p-6 hover:bg-slate-900/60 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 hover:shadow-lg hover:shadow-blue-500/10"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div
@@ -127,9 +127,9 @@ const Overview = () => {
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium ${
                         card.status === "Active"
-                          ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                          ? "bg-green-500/20 text-green-400 border border-green-500/30"
                           : card.status === "Running"
-                          ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                          ? "bg-green-500/20 text-green-400 border border-green-500/30"
                           : card.status === "Completed"
                           ? "bg-green-500/20 text-green-400 border border-green-500/30"
                           : "bg-slate-500/20 text-slate-300 border border-slate-500/30"
@@ -148,11 +148,11 @@ const Overview = () => {
           </div>
 
           {/* Trading Chart Section */}
-          <div className="bg-slate-900/40 backdrop-blur-sm border border-red-500/20 rounded-xl p-6 hover:border-red-400/30 transition-all duration-300">
+          <div className="bg-slate-900/40 backdrop-blur-sm border border-blue-500/20 rounded-xl p-6 hover:border-blue-400/30 transition-all duration-300">
             <div className="flex flex-col items-center justify-between gap-5">
               <div className="w-full">
                 <h2 className="text-xl font-bold text-white mb-1 flex items-center">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mr-3 animate-pulse"></div>
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></div>
                   Personal Trading Chart
                 </h2>
                 <p className="text-slate-300">
