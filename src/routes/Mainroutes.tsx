@@ -7,6 +7,7 @@ import About from "../page/About";
 import ContactUs from "../page/ContactUs";
 import PlansSection from "../page/PlansSection";
 import ServicesSection from "../page/ServicesSection";
+
 import Register from "../auth/register";
 import Login from "../auth/login";
 import Deposit from "../Clients/deposit";
