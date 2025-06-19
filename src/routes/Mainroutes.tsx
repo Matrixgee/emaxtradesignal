@@ -7,8 +7,11 @@ import About from "../page/About";
 import ContactUs from "../page/ContactUs";
 import PlansSection from "../page/PlansSection";
 import ServicesSection from "../page/ServicesSection";
-import Register from "../Auth/register";
-import Login from "../Auth/login";
+import Register from "../auth/register";
+import Login from "../auth/login";
+import Deposit from "../Clients/deposit";
+import Withdraw from "../Clients/withdraw";
+import History from "../Clients/history";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -52,6 +55,18 @@ export const MainRoutes = createBrowserRouter([
       {
         path: "overview",
         element: <Overview />,
+      },
+      {
+        path: "deposit",
+        element: <Deposit />,
+      },
+      {
+        path: "withdraw",
+        element: <Withdraw />,
+      },
+      {
+        path: "history",
+        element: <History />,
       },
     ],
   },
