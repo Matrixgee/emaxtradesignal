@@ -13,6 +13,8 @@ import Login from "../auth/login";
 import Deposit from "../Clients/deposit";
 import Withdraw from "../Clients/withdraw";
 import History from "../Clients/history";
+import AuthLayout from "../Layout/AuthLayout";
+import Review from "../page/review";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -26,6 +28,10 @@ export const MainRoutes = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "review",
+        element: <Review />,
       },
       {
         path: "contact",
@@ -42,13 +48,20 @@ export const MainRoutes = createBrowserRouter([
     ],
   },
   {
-    path: "login",
-    element: <Login />,
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <Register />,
+      },
+    ],
   },
-  {
-    path: "signup",
-    element: <Register />,
-  },
+
   {
     path: "user",
     element: <UserDashboardLayout />,

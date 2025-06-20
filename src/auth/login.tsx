@@ -7,7 +7,7 @@ import { isAxiosError } from "axios";
 import { useDispatch } from "react-redux";
 import { setAdminToken } from "../Global/AdminSlice";
 import { setToken, setUser } from "../Global/UserSlice";
-import logo from '../assets/EMAXLOGO.png'
+import logo from "../assets/EMAXLOGO.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -141,7 +141,7 @@ const Login = () => {
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
           <Link
-            to="/signup"
+            to="/auth/signup"
             className="text-blue-600 font-medium hover:underline"
           >
             Sign up

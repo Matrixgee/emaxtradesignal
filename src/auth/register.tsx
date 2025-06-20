@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import logo from "../assets/EMAXLOGO.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../config/axiosconfig";
 import { isAxiosError } from "axios";
 import toast from "react-hot-toast";
@@ -18,6 +18,7 @@ const Register = () => {
     phoneNumber: "",
     password: "",
     confirmPassword: "",
+    country: "",
   });
 
   // console.log(`VITE_DEVE_URL = ${import.meta.env.VITE_DEVE_URL}`);
@@ -25,11 +26,35 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [countries, setCountries] = useState<string[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  console.log(countries);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const res = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name"
+        );
+        const data = await res.json();
+        const countryNames = data
+          .map((c: any) => c.name?.common)
+          .filter(Boolean)
+          .sort();
+        setCountries(countryNames);
+      } catch (err) {
+        console.error("Failed to fetch countries:", err);
+      }
+    };
+    fetchCountries();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,9 +92,10 @@ const Register = () => {
         phoneNumber: "",
         password: "",
         confirmPassword: "",
+        country: "",
       });
       setTimeout(() => {
-        window.location.href = "/review";
+        window.location.href = "/auth/login";
       });
     } catch (error: any) {
       if (isAxiosError(error)) {
@@ -150,6 +176,26 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
+
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Country
+            </label>
+            <select
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-gray-800"
+              required
+            >
+              <option value="">Select Country</option>
+              {countries.map((country) => (
+                <option key={country} value={country}>
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div> */}
 
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -316,7 +362,7 @@ const Register = () => {
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{" "}
           <Link
-            to="/login"
+            to="/auth/login"
             className="text-blue-600 font-medium hover:underline"
           >
             Log in
