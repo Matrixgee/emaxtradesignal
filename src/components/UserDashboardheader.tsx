@@ -8,7 +8,7 @@ import {
   Menu,
   ArrowDownToLine,
   ArrowUpFromLine,
-  KeySquare,
+  // KeySquare,
 } from "lucide-react";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
@@ -64,7 +64,7 @@ const UserDashboardHeader: React.FC<UserHeaderProps> = ({
 
   const handleLogout = () => {
     dispatch(clearUser());
-    navigate("/login");
+    navigate("/auth/login");
     console.log("Logout clicked");
   };
 
@@ -94,11 +94,11 @@ const UserDashboardHeader: React.FC<UserHeaderProps> = ({
       path: "/user/overview",
       mobileOnly: true,
     },
-    {
-      label: "Update KYC",
-      icon: <KeySquare className="w-5 h-5" />,
-      path: "/user/updatekyc",
-    },
+    // {
+    //   label: "Update KYC",
+    //   icon: <KeySquare className="w-5 h-5" />,
+    //   path: "/user/updatekyc",
+    // },
   ];
 
   return (

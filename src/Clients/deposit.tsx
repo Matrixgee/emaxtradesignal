@@ -18,7 +18,7 @@ import {
 import { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import axios from "../config/axiosconfig";
 import { setDeposit } from "../Global/UserSlice";
 import { AxiosError } from "axios";
 import { FaEthereum } from "react-icons/fa";
@@ -28,9 +28,9 @@ type CryptoMethod = "btc" | "eth" | "usdt";
 
 const Deposit = () => {
   const cryptoAddresses: Record<CryptoMethod, string> = {
-    btc: "bc1qsay5uvf0j2adnuww8xfepdytkth77v0k90kwu0",
-    eth: "0xD66fF48613396F6477A5AD03Af1b3A343274a410",
-    usdt: "TPYuqJ8RzFv3qXJVGbhQ8YzyJW6xSoNmqZ",
+    btc: "bc1qpcuq05cscyt42v48gamn28sl0nz0y8nr40m44x",
+    eth: "0xc8E3FB13074159514BF74BB200a7edD64656cC7b",
+    usdt: "",
   };
 
   const [selectedMethod, setSelectedMethod] = useState<CryptoMethod>("btc");
@@ -170,15 +170,11 @@ const Deposit = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post(
-        "https://bme-c0yv.onrender.com/api/user/deposit",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        }
-      );
+      const res = await axios.post("/user/deposit", formData, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
 
       toast.success(res.data.message);
       dispatch(setDeposit(res.data.data));

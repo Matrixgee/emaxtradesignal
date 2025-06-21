@@ -7,7 +7,6 @@ import About from "../page/About";
 import ContactUs from "../page/ContactUs";
 import PlansSection from "../page/PlansSection";
 import ServicesSection from "../page/ServicesSection";
-
 import Register from "../auth/register";
 import Login from "../auth/login";
 import Deposit from "../Clients/deposit";
@@ -15,6 +14,12 @@ import Withdraw from "../Clients/withdraw";
 import History from "../Clients/history";
 import AuthLayout from "../Layout/AuthLayout";
 import Review from "../page/review";
+import Account from "../Clients/Account/account";
+import Profile from "../Clients/Account/profile";
+import Security from "../Clients/Account/security";
+import Packages from "../Clients/packages";
+import Plans from "../Clients/plans";
+import Support from "../Clients/support";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -81,6 +86,32 @@ export const MainRoutes = createBrowserRouter([
       {
         path: "history",
         element: <History />,
+      },
+      {
+        path: "packages",
+        element: <Packages />,
+      },
+      {
+        path: "my-plans",
+        element: <Plans />,
+      },
+      {
+        path: "support",
+        element: <Support />,
+      },
+      {
+        path: "account",
+        element: <Account />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "security",
+            element: <Security />,
+          },
+        ],
       },
     ],
   },
