@@ -20,6 +20,12 @@ import Security from "../Clients/Account/security";
 import Packages from "../Clients/packages";
 import Plans from "../Clients/plans";
 import Support from "../Clients/support";
+import AdminLayout from "../Layout/Adminlayout";
+import AdminOverview from "../Admins/AdminOverview";
+import AllTransactions from "../Admins/AllTranscations";
+import AllUsers from "../Admins/AllUsers";
+import AllWithdrawal from "../Admins/AllWithdrawal";
+import UserDetails from "../Admins/userdetails";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -112,6 +118,32 @@ export const MainRoutes = createBrowserRouter([
             element: <Security />,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: "Admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "adminhome",
+        element: <AdminOverview />,
+      },
+      {
+        path: "transactions",
+        element: <AllTransactions />,
+      },
+      {
+        path: "allusers",
+        element: <AllUsers />,
+      },
+      {
+        path: "withdrawals",
+        element: <AllWithdrawal />,
+      },
+      {
+        path: "userdetails/:_id",
+        element: <UserDetails />,
       },
     ],
   },
