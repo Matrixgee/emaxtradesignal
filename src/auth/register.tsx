@@ -118,13 +118,13 @@ const Register = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        onClick={() => nav("/")}
       >
         {/* Logo */}
         <motion.div
           className="flex items-center mb-[23px] gap-2 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => nav("/")}
         >
           <img src={logo} alt="" className="h-[80px] w-[95px]" />
         </motion.div>
