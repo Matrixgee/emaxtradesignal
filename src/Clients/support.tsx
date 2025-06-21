@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Send, MessageCircle, Clock, HelpCircle } from "lucide-react";
 
