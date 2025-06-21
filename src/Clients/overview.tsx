@@ -11,40 +11,40 @@ import axios from "../config/axiosconfig";
 const Overview = () => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<any>([]);
-  console.log(user);
 
   const statsCards = [
     {
-      title: "Total Balance",
-      value: `$ "0.00"`,
+      title: "Account Balance",
+      value: `$${user.accountBalance?.toLocaleString() || "0"}`,
       icon: <ArrowUpRight className="text-green-400 w-6 h-6" />,
-
       color: "from-green-600/30 to-emerald-400/30",
       status: "Active",
     },
     {
       title: "Total Profits",
-      value: `$ "0.00"`,
+      value: `$${user.totalProfit || "0"}`,
       icon: <ArrowUpRight className="text-green-400 w-6 h-6" />,
-
       color: "from-emerald-600/30 to-green-400/30",
       status: "Running",
     },
     {
       title: "Total Deposit",
-      value: `$ "0.00"`,
+      value: `$${user.totalDeposit || "0"}`,
       icon: <ArrowUpRight className="text-green-400 w-6 h-6" />,
-
+      color: "from-green-500/30 to-green-300/30",
+      status: "Completed",
+    },
+    {
+      title: "Total Withdrawn",
+      value: `$${user.totalWithdrawn || "0"}`,
+      icon: <ArrowUpRight className="text-green-400 w-6 h-6" />,
       color: "from-green-500/30 to-green-300/30",
       status: "Completed",
     },
   ];
 
-  const [fullName, setFullName] = useState("");
-  console.log(fullName);
-
   const token = useSelector((state: any) => state.user.Token);
-  console.log(token);
+  // console.log(token);
 
   const getOneUser = async () => {
     const userId = localStorage.getItem("userId");
@@ -56,8 +56,8 @@ const Overview = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUser(res.data.data);
-      setFullName(res.data.data.fullName);
+      setUser(res.data.user);
+      console.log(user);
     } catch (error) {
       console.error("Error fetching user:", error);
       toast.error("Failed to fetch user.");
@@ -102,7 +102,7 @@ const Overview = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">
-              Welcome back, !
+              Welcome back, {user.firstName} {user.lastName}!
             </h1>
             <p className="text-slate-300 text-lg">
               Here's an overview of your investment portfolio

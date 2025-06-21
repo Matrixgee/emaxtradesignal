@@ -58,8 +58,6 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    const toastLoadingId = toast.loading("Registering...");
 
     if (
       !formData.firstName ||
@@ -71,15 +69,16 @@ const Register = () => {
       !formData.confirmPassword
     ) {
       toast.error("Please fill all fields");
-      toast.dismiss(toastLoadingId);
       return;
     }
 
     if (formData.confirmPassword !== formData.password) {
       toast.error("Passwords do not match");
-      toast.dismiss(toastLoadingId);
       return;
     }
+
+    setLoading(true);
+    const toastLoadingId = toast.loading("Registering...");
 
     try {
       const res = await axios.post("user/signup", formData);
@@ -99,7 +98,7 @@ const Register = () => {
       });
     } catch (error: any) {
       if (isAxiosError(error)) {
-        const errorMsg = error.response?.data?.message || "An error occurred";
+        const errorMsg = error.response?.data?.error || "An error occurred";
         toast.error(errorMsg);
       } else {
         toast.error("An unknown error occurred");
