@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, User, LogIn } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../assets/EMAXLOGO.png'
+import logo from "../assets/EMAXLOGO.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,8 +22,8 @@ const Header = () => {
     { name: "Plans", path: "plans" },
     { name: "Contact", path: "contact" },
   ];
-  
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   return (
     <div className="w-full h-[13vh] bg-blue-50">
@@ -38,7 +38,7 @@ const Header = () => {
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3 group cursor-pointer">
-              <img src={logo} alt="" className="w-[80px] h-[70px]"/>
+              <img src={logo} alt="" className="w-[80px] h-[70px]" />
             </div>
 
             {/* Desktop Navigation */}
@@ -58,11 +58,17 @@ const Header = () => {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
-              <button onClick={()=>navigate("/login")} className="flex cursor-pointer items-center space-x-2 px-4 py-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300 group">
+              <button
+                onClick={() => navigate("/auth/login")}
+                className="flex cursor-pointer items-center space-x-2 px-4 py-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300 group"
+              >
                 <User className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Login</span>
               </button>
-              <button onClick={()=>navigate("/signup")} className="flex cursor-pointer items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <button
+                onClick={() => navigate("/auth/signup")}
+                className="flex cursor-pointer items-center space-x-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
                 <LogIn className="w-4 h-4" />
                 <span>Get Started</span>
               </button>
@@ -100,11 +106,17 @@ const Header = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-blue-100 space-y-3">
-                <button onClick={()=>navigate("/login")} className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 text-blue-600 border border-blue-200 rounded-full hover:bg-blue-50 transition-colors duration-300">
+                <button
+                  onClick={() => navigate("/auth/login")}
+                  className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 text-blue-600 border border-blue-200 rounded-full hover:bg-blue-50 transition-colors duration-300"
+                >
                   <User className="w-4 h-4" />
                   <span>Login</span>
                 </button>
-                <button onClick={()=>navigate("/register")} className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg">
+                <button
+                  onClick={() => navigate("/auth/signup")}
+                  className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg"
+                >
                   <LogIn className="w-4 h-4" />
                   <span>Get Started</span>
                 </button>

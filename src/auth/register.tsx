@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
 import logo from "../assets/EMAXLOGO.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../config/axiosconfig";
 import { isAxiosError } from "axios";
@@ -109,6 +109,8 @@ const Register = () => {
     }
   };
 
+  const nav = useNavigate();
+
   return (
     <section className="min-h-screen py-4 flex items-center justify-center bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
       <motion.div
@@ -116,6 +118,7 @@ const Register = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        onClick={() => nav("/")}
       >
         {/* Logo */}
         <motion.div

@@ -33,7 +33,7 @@ const Hero = () => {
 
         setCurrentStats({
           users: Math.floor(50000 * progress),
-          trades: Math.floor(1200000 * progress),
+          trades: Math.floor(1200 * progress),
           success: Math.floor(96.8 * progress),
         });
 
