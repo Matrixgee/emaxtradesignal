@@ -1,11 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Modal } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import axios from "../../config/axiosconfig";
+import toast from "react-hot-toast";
+import { BiLoaderCircle } from "react-icons/bi";
 const Profile = () => {
-  const user = useSelector((state: any) => state.user.user);
-  console.log(user);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<any>([]);
+  const token = useSelector((state: any) => state.user.Token);
+  // console.log(token);
+
+  const getOneUser = async () => {
+    const userId = localStorage.getItem("userId");
+
+    try {
+      setLoading(true);
+      const res = await axios.get(`/user/userprofile/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(res.data.user);
+      console.log(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      toast.error("Failed to fetch user.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getOneUser();
+  }, []);
 
   const [edit, setEdit] = useState<boolean>(false);
   const [change, setChange] = useState<boolean>(false);
@@ -13,6 +42,17 @@ const Profile = () => {
   const toggleEdit = () => {
     setEdit(!edit);
   };
+
+  if (loading === true) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <div className="text-center">
+          <BiLoaderCircle className="animate-spin mx-auto mb-4" size={40} />
+          <p className="text-gray-600">Please wait</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
