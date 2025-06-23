@@ -1,4 +1,4 @@
-import logo from '../assets/EMAXLOGO.png'
+import logo from "../assets/EMAXLOGO.png";
 import {
   Mail,
   Phone,
@@ -20,8 +20,8 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center mb-[23px] gap-2 cursor-pointer">
-          <img src={logo} alt="" className="h-[80px] w-[95px]" />
-        </div>
+              <img src={logo} alt="" className="h-[80px] w-[95px]" />
+            </div>
             <p className="text-slate-600 text-sm leading-relaxed">
               Your trusted partner in building wealth through smart investment
               strategies. Empowering investors with expert insights and
@@ -92,13 +92,10 @@ const Footer = () => {
                   >
                     {resource}
                   </a>
-
-
                 </li>
               ))}
             </ul>
           </div>
-
 
           {/* Contact Info */}
           <div className="space-y-4">
@@ -113,15 +110,15 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-blue-600" />
                 <span className="text-slate-600 text-sm">
-                  info@emaxsignaltrade
+                  support@emaxsignaltrade.com
                 </span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-blue-600 mt-0.5" />
                 <span className="text-slate-600 text-sm">
-                  123 Financial District
+                  23 Lime Tree Bay Avenue,
                   <br />
-                  New York, NY 10004
+                  George Town, XBX1420
                 </span>
               </div>
             </div>
@@ -158,12 +155,10 @@ const Footer = () => {
                 <div className="text-slate-600 text-xs">
                   Excellence in Service
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-
       </div>
 
       {/* Bottom Bar */}
@@ -200,11 +195,10 @@ const Footer = () => {
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer
+export default Footer;

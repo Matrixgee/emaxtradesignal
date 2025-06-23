@@ -38,56 +38,67 @@ const PricingPlans = () => {
     return () => observer.disconnect();
   }, []);
 
-  type Plan = {
-    name: string;
-    description: string;
-    minInvestment: number;
-    maxInvestment: number;
-    expectedReturn: string;
-    managementFee: string;
-    badge?: string;
-    color: string;
-    icon: React.ElementType;
-    cta: string;
-    popular?: boolean;
-  };
-
-  const plans: Plan[] = [
+  const plans = [
     {
       name: "Starter Plan",
-      description: "Perfect for beginners starting their investment journey",
-      minInvestment: 1000,
-      maxInvestment: 50000,
-      expectedReturn: "8-12% annually",
+      description: "Ideal for beginners getting started with investing.",
+      minInvestment: 100,
+      maxInvestment: 1000,
+      expectedReturn: "5% Monthly",
       managementFee: "1.5%",
-      color: "from-blue-400 to-cyan-300",
-      icon: TrendingUp,
-      cta: "Start Investing",
+      badge: "Beginner Friendly",
+      color: "from-purple-600 to-purple-700",
+      icon: Zap,
+      cta: "Start Now",
     },
     {
       name: "Growth Plan",
-      description: "Advanced strategies for experienced investors",
-      minInvestment: 50000,
-      maxInvestment: 250000,
-      expectedReturn: "12-18% annually",
+      description: "Great for those growing their portfolio consistently.",
+      minInvestment: 1000,
+      maxInvestment: 10000,
+      expectedReturn: "7% Monthly",
       managementFee: "1.2%",
-      badge: "Most Popular",
-      color: "from-cyan-400 to-blue-400",
-      icon: Zap,
-      cta: "Scale Your Portfolio",
+      badge: "Growth Focused",
+      color: "from-blue-600 to-blue-700",
+      icon: TrendingUp,
+      cta: "Grow with Us",
+    },
+    {
+      name: "Professional",
+      description: "Designed for serious investors and strategists.",
+      minInvestment: 10000,
+      maxInvestment: 50000,
+      expectedReturn: "9% Monthly",
+      managementFee: "1.0%",
+      badge: "Investor’s Choice",
+      color: "from-indigo-600 to-indigo-700",
+      icon: Star,
+      cta: "Join Pro Plan",
       popular: true,
     },
     {
-      name: "Premium Plan",
-      description: "Exclusive high-yield opportunities for serious investors",
-      minInvestment: 250000,
-      maxInvestment: 600000,
-      expectedReturn: "18-25% annually",
-      managementFee: "1.0%",
-      badge: "Elite",
-      color: "from-blue-500 to-cyan-400",
+      name: "Premium",
+      description: "Elite tools for premium clients.",
+      minInvestment: 50000,
+      maxInvestment: 100000,
+      expectedReturn: "11% Monthly",
+      managementFee: "0.8%",
+      badge: "Elite Service",
+      color: "from-pink-600 to-pink-700",
       icon: Crown,
-      cta: "Go Premium",
+      cta: "Upgrade Now",
+    },
+    {
+      name: "Golden",
+      description: "For high-net-worth individuals needing top-tier services.",
+      minInvestment: 100000,
+      maxInvestment: 1000000,
+      expectedReturn: "12%+ Monthly",
+      managementFee: "0.5%",
+      badge: "Ultimate Experience",
+      color: "from-yellow-500 to-yellow-600",
+      icon: Sparkles,
+      cta: "Go Golden",
     },
   ];
 
@@ -99,7 +110,6 @@ const PricingPlans = () => {
     }
     return `$${amount.toLocaleString()}`;
   };
-
   return (
     <section
       ref={sectionRef}

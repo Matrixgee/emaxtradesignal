@@ -26,6 +26,7 @@ import AllTransactions from "../Admins/AllTranscations";
 import AllUsers from "../Admins/AllUsers";
 import AllWithdrawal from "../Admins/AllWithdrawal";
 import UserDetails from "../Admins/userdetails";
+import UserPrivateRoute from "./userprivate";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -75,7 +76,11 @@ export const MainRoutes = createBrowserRouter([
 
   {
     path: "user",
-    element: <UserDashboardLayout />,
+    element: (
+      <UserPrivateRoute>
+        <UserDashboardLayout />
+      </UserPrivateRoute>
+    ),
     children: [
       {
         path: "overview",

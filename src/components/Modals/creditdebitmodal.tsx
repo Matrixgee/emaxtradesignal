@@ -108,7 +108,7 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
             onChange={handleOptionChange}
           >
             <option value="">Select Option</option>
-            <option value="referralBonus">Referral Bonus</option>
+            <option value="totalProfit"> Total Profit</option>
             <option value="totalProfit">Total Profit</option>
             <option value="accountBalance">Account Balance</option>
             <option value="totalBonus">Total Bonus</option>

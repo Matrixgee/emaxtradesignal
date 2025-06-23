@@ -59,7 +59,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ active, setActive }) => {
 
   const handleLogout = () => {
     dispatch(clearAdmin());
-    navigate("/login");
+    navigate("/auth/login");
     console.log("Logout clicked");
   };
 

@@ -26,7 +26,7 @@ const Withdraw = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("btc");
   const [isProcessing, setIsProcessing] = useState(false);
   const [showBalance, setShowBalance] = useState(true);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>([]);
   const [loading, setLoading] = useState(false);
 
   const token = useSelector((state: any) => state.user.Token);
@@ -83,7 +83,7 @@ const Withdraw = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUser(res.data.data);
+      setUser(res.data.user);
     } catch (error) {
       console.error("Error fetching user:", error);
       toast.error("Failed to fetch user data.");
