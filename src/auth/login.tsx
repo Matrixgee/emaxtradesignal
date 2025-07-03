@@ -41,8 +41,12 @@ const Login = () => {
 
       toast.success("Login Successful");
 
+      const data = res.data.data.isAdmin;
+
+      console.log(data);
+
       setTimeout(() => {
-        if (res.data.data.isAdmin) {
+        if (res.data.data.isAdmin === true) {
           dispatch(setAdminToken(res.data.data.token));
           navigate("/admin/adminhome");
         } else {
