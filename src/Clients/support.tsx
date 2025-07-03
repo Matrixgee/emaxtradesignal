@@ -129,7 +129,9 @@ const Support = () => {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
                     <MessageCircle className="w-5 h-5 text-blue-400" />
-                    <span className="text-slate-300">support@tradepro.com</span>
+                    <span className="text-slate-300">
+                      support@emaxsignaltrade.com
+                    </span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Clock className="w-5 h-5 text-blue-400" />

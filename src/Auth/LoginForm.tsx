@@ -2,7 +2,14 @@ import { ArrowRight, Lock, Mail, Shield } from "lucide-react";
 import React, { useState } from "react";
 import InputField from "../components/InputField";
 import { useNavigate } from "react-router-dom";
-import Logo from "../components/Logo";
+import { motion } from "framer-motion";
+import logo from "../assets/EMAXLOGO.png";
+import toast from "react-hot-toast";
+import axios from "../config/axiosconfig";
+import { setToken, setUser } from "../Global/UserSlice";
+import { setAdminToken } from "../Global/AdminSlice";
+import { isAxiosError } from "axios";
+import { useDispatch } from "react-redux";
 
 interface FormData {
   email: string;
@@ -44,28 +51,70 @@ const LoginForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log("Login submitted:", formData);
-    }, 2000);
-  };
+    const loadingId = toast.loading("Please wait");
+    try {
+      const res = await axios.post("/user/login", formData);
+      console.log(res);
 
-  const navigate = useNavigate();
+      const userId = res.data.data._id;
+
+      toast.success("Login Successful");
+
+      const data = res.data.data.isAdmin;
+
+      console.log(data);
+
+      setTimeout(() => {
+        if (res.data.data.isAdmin) {
+          dispatch(setAdminToken(res.data.data.token));
+          navigate("/admin/adminhome");
+        } else {
+          dispatch(setUser(res.data.user));
+          dispatch(setToken(res.data.token));
+          localStorage.setItem("userId", userId);
+          navigate("/user/overview");
+        }
+      }, 3000);
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        const errorMsg =
+          error.response?.data?.message || "An unexpected error occurred";
+        toast.error(errorMsg);
+      } else {
+        toast.error("Error occurred");
+      }
+      setFormData({ email: "", password: "" });
+    } finally {
+      setIsLoading(false);
+      toast.dismiss(loadingId);
+    }
+  };
 
   return (
     <div className="w-full max-w-md">
       <div
-        className={`bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl shadow-2xl p-8 transform transition-all duration-1000 }`}
+        className={`bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 rounded-3xl shadow-2xl p-8 transform transition-all duration-1000 }`}
       >
-        <Logo />
+        <motion.div
+          className="flex justify-center items-center mb-[23px] gap-2 cursor-pointer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => navigate("/")}
+        >
+          <img src={logo} alt="" className="h-[80px] w-[95px]" />
+        </motion.div>
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
-          <p className="text-gray-200">
+          <p className="text-gray-600 font-semibold">
             Sign in to your account to continue trading
           </p>
         </div>
@@ -126,7 +175,7 @@ const LoginForm: React.FC = () => {
         </form>
 
         <div className="mt-8 text-center">
-          <p className="text-gray-200">
+          <p className="text-gray-400">
             Don't have an account?{" "}
             <button
               onClick={() => navigate("/auth/signup")}

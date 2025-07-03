@@ -88,7 +88,7 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-blue-800 opacity-95 flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-black opacity-95 flex justify-center items-center z-50">
       <div className="bg-white w-96 p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl font-medium mb-4">Credit/Debit User</h2>
         <div className="mb-4">
