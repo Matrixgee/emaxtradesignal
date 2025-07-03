@@ -8,7 +8,7 @@ import ContactUs from "../page/ContactUs";
 import PlansSection from "../page/PlansSection";
 import ServicesSection from "../page/ServicesSection";
 import Register from "../auth/register";
-// import Login from "../auth/login";
+import Login from "../auth/login";
 import Deposit from "../Clients/deposit";
 import Withdraw from "../Clients/withdraw";
 import History from "../Clients/history";
@@ -27,7 +27,6 @@ import AllUsers from "../Admins/AllUsers";
 import AllWithdrawal from "../Admins/AllWithdrawal";
 import UserDetails from "../Admins/userdetails";
 import UserPrivateRoute from "./userprivate";
-import LoginForm from "../auth/LoginForm";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -66,7 +65,7 @@ export const MainRoutes = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <LoginForm />,
+        element: <Login />,
       },
       {
         path: "signup",

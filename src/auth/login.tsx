@@ -8,6 +8,18 @@ import { useDispatch } from "react-redux";
 import { setAdminToken } from "../Global/AdminSlice";
 import { setToken, setUser } from "../Global/UserSlice";
 import logo from "../assets/EMAXLOGO.png";
+import InputField from "../components/InputField";
+import { Lock, Mail } from "lucide-react";
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+interface Errors {
+  email?: string;
+  password?: string;
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,16 +28,17 @@ const Login = () => {
     password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleInputChange = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: "" }));
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -98,14 +111,16 @@ const Login = () => {
             <label className="block text-sm font-medium text-gray-700">
               Email
             </label>
-            <input
-              required
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+            <InputField
+              icon={Mail}
               type="email"
-              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-gray-800"
-              placeholder="you@example.com"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleInputChange("email", e.target.value)
+              }
+              error={errors.email}
+              required
             />
           </div>
 
@@ -113,14 +128,19 @@ const Login = () => {
             <label className="block text-sm font-medium text-gray-700">
               Password
             </label>
-            <input
-              required
-              name="password"
+            <InputField
+              icon={Lock}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
               value={formData.password}
-              onChange={handleChange}
-              type="password"
-              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white/90 text-gray-800"
-              placeholder="••••••••"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleInputChange("password", e.target.value)
+              }
+              error={errors.password}
+              showPasswordToggle
+              showPassword={showPassword}
+              onTogglePassword={() => setShowPassword(!showPassword)}
+              required
             />
           </div>
 
