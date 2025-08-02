@@ -109,7 +109,7 @@ const CreditDebitModal: React.FC<CreditDebitModalProps> = ({
           >
             <option value="">Select Option</option>
             <option value="totalProfit"> Total Profit</option>
-            {/* <option value="totalDeposit">Total Deposit</option> */}
+            <option value="totalDeposit">Total Deposit</option>
             <option value="accountBalance">Account Balance</option>
             <option value="totalBonus">Total Bonus</option>
           </select>
