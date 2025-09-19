@@ -71,6 +71,7 @@ const AllUsers = () => {
 
   useEffect(() => {
     getAllusers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -90,7 +91,7 @@ const AllUsers = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow-md overflow-x-auto ">
-        <div className="h-[70rem]  overflow-y-auto">
+        <div className="h-[190rem]   overflow-y-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 sticky top-0 z-10">
               <tr>
