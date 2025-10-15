@@ -107,8 +107,6 @@ const Register = () => {
           fallback;
 
         toast.error(errorMsg);
-      } else {
-        toast.error("Error occurred");
       }
     } finally {
       setLoading(false);
