@@ -69,15 +69,20 @@ const Login = () => {
           navigate("/user/overview");
         }
       }, 3000);
-    } catch (error: unknown) {
+    } catch (error) {
       if (isAxiosError(error)) {
+        const apiMessage = error.response?.data?.message;
+        const apiError = error.response?.data?.error;
+        const fallback = error.message || "An unexpected error occurred";
+
         const errorMsg =
-          error.response?.data?.message || "An unexpected error occurred";
+          `${apiMessage || ""}${apiError ? " - " + apiError : ""}`.trim() ||
+          fallback;
+
         toast.error(errorMsg);
       } else {
         toast.error("Error occurred");
       }
-      setFormData({ email: "", password: "" });
     } finally {
       setLoading(false);
       toast.dismiss(loadingId);

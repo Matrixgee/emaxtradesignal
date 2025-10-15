@@ -96,12 +96,19 @@ const Register = () => {
       setTimeout(() => {
         window.location.href = "/auth/login";
       });
-    } catch (error: any) {
+    } catch (error) {
       if (isAxiosError(error)) {
-        const errorMsg = error.response?.data?.error || "An error occurred";
+        const apiMessage = error.response?.data?.message;
+        const apiError = error.response?.data?.error;
+        const fallback = error.message || "An unexpected error occurred";
+
+        const errorMsg =
+          `${apiMessage || ""}${apiError ? " - " + apiError : ""}`.trim() ||
+          fallback;
+
         toast.error(errorMsg);
       } else {
-        toast.error("An unknown error occurred");
+        toast.error("Error occurred");
       }
     } finally {
       setLoading(false);
