@@ -26,6 +26,8 @@ import AllUsers from "../Admins/AllUsers";
 import AllWithdrawal from "../Admins/AllWithdrawal";
 import UserDetails from "../Admins/userdetails";
 import UserPrivateRoute from "./userprivate";
+import Login from "../Auth/login";
+import Register from "../Auth/register";
 
 export const MainRoutes = createBrowserRouter([
   {
@@ -61,7 +63,16 @@ export const MainRoutes = createBrowserRouter([
   {
     path: "auth",
     element: <AuthLayout />,
-    children: [],
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <Register />,
+      },
+    ],
   },
 
   {
