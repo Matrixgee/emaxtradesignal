@@ -26,8 +26,8 @@ import AllUsers from "../Admins/AllUsers";
 import AllWithdrawal from "../Admins/AllWithdrawal";
 import UserDetails from "../Admins/userdetails";
 import UserPrivateRoute from "./userprivate";
-import Login from "../Auth/login";
-import Register from "../Auth/register";
+import Login from "../Info/login";
+import Register from "../Info/register";
 
 export const MainRoutes = createBrowserRouter([
   {
