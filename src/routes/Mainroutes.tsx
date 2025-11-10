@@ -7,8 +7,7 @@ import About from "../page/About";
 import ContactUs from "../page/ContactUs";
 import PlansSection from "../page/PlansSection";
 import ServicesSection from "../page/ServicesSection";
-import Register from "../Auth/register";
-import Login from "../Auth/login";
+
 import Deposit from "../Clients/deposit";
 import Withdraw from "../Clients/withdraw";
 import History from "../Clients/history";
@@ -62,16 +61,7 @@ export const MainRoutes = createBrowserRouter([
   {
     path: "auth",
     element: <AuthLayout />,
-    children: [
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <Register />,
-      },
-    ],
+    children: [],
   },
 
   {
