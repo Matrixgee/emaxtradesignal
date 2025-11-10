@@ -90,7 +90,7 @@ const WhyChooseUs = () => {
 
   const achievements = [
     { number: "50K+", label: "Active Traders" },
-    { number: "$2.5B+", label: "Trading Volume" },
+    { number: "$2.9B+", label: "Trading Volume" },
     { number: "98.5%", label: "Success Rate" },
     { number: "150+", label: "Countries" },
   ];
