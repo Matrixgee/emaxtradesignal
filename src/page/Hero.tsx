@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  TrendingUp,
-  BarChart3,
-  Shield,
-  Zap,
-  Play,
-  ArrowRight,
-} from "lucide-react";
+import { TrendingUp, BarChart3, Shield, Zap, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [currentStats, setCurrentStats] = useState({
@@ -16,6 +10,8 @@ const Hero = () => {
   });
 
   const [isVisible, setIsVisible] = useState(false);
+
+  const nav = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
@@ -128,15 +124,18 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button className="group flex items-center justify-center space-x-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+              <button
+                className="group flex items-center justify-center space-x-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
+                onClick={() => nav("/auth/signup")}
+              >
                 <span className="font-semibold text-lg">Start Trading Now</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
-
+              {/* 
               <button className="group flex items-center justify-center space-x-3 px-8 py-4 bg-white text-gray-700 rounded-full border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <Play className="w-5 h-5 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
                 <span className="font-semibold text-lg">Watch Demo</span>
-              </button>
+              </button> */}
             </div>
 
             {/* Stats */}

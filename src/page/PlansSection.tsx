@@ -1,8 +1,11 @@
 import { ArrowRight, Award, Check, Shield, Star, Zap } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PlansSection = () => {
   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
+
+  const nav = useNavigate();
 
   const plans = [
     {
@@ -18,6 +21,7 @@ const PlansSection = () => {
       ],
       popular: false,
       color: "from-purple-600 to-purple-700",
+      path: "/auth/signup",
     },
     {
       name: "Growth Plan",
@@ -32,6 +36,7 @@ const PlansSection = () => {
       ],
       popular: false,
       color: "from-purple-600 to-purple-700",
+      path: "/auth/signup",
     },
     {
       name: "Professional",
@@ -46,6 +51,7 @@ const PlansSection = () => {
       ],
       popular: true,
       color: "from-purple-700 to-purple-800",
+      path: "/auth/signup",
     },
     {
       name: "Premium",
@@ -59,6 +65,7 @@ const PlansSection = () => {
       ],
       popular: false,
       color: "from-purple-800 to-purple-900",
+      path: "/auth/signup",
     },
     {
       name: "Golden",
@@ -73,6 +80,7 @@ const PlansSection = () => {
       ],
       popular: false,
       color: "from-yellow-500 to-yellow-600",
+      path: "/auth/signup",
     },
   ];
 
@@ -137,6 +145,7 @@ const PlansSection = () => {
               </div>
 
               <button
+                onClick={() => nav(plan.path)}
                 className={`w-full group flex items-center justify-center space-x-3 px-8 py-4 ${
                   plan.popular
                     ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800"

@@ -7,6 +7,7 @@ import {
   Crown,
   Sparkles,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const PricingPlans = () => {
   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
@@ -38,6 +39,8 @@ const PricingPlans = () => {
     return () => observer.disconnect();
   }, []);
 
+  const nav = useNavigate();
+
   const plans = [
     {
       name: "Starter Plan",
@@ -50,6 +53,7 @@ const PricingPlans = () => {
       color: "from-purple-600 to-purple-700",
       icon: Zap,
       cta: "Start Now",
+      path: "/auth/signup",
     },
     {
       name: "Growth Plan",
@@ -62,6 +66,7 @@ const PricingPlans = () => {
       color: "from-blue-600 to-blue-700",
       icon: TrendingUp,
       cta: "Grow with Us",
+      path: "/auth/signup",
     },
     {
       name: "Professional",
@@ -75,6 +80,7 @@ const PricingPlans = () => {
       icon: Star,
       cta: "Join Pro Plan",
       popular: true,
+      path: "/auth/signup",
     },
     {
       name: "Premium",
@@ -87,6 +93,7 @@ const PricingPlans = () => {
       color: "from-pink-600 to-pink-700",
       icon: Crown,
       cta: "Upgrade Now",
+      path: "/auth/signup",
     },
     {
       name: "Golden",
@@ -99,6 +106,7 @@ const PricingPlans = () => {
       color: "from-yellow-500 to-yellow-600",
       icon: Sparkles,
       cta: "Go Golden",
+      path: "/auth/signup",
     },
   ];
 
@@ -242,6 +250,7 @@ const PricingPlans = () => {
 
                   {/* CTA Button */}
                   <button
+                    onClick={() => nav(plan.path)}
                     className={`w-full py-4 px-6 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
                       plan.popular
                         ? `bg-gradient-to-r ${plan.color} text-white hover:shadow-blue-500/50`
