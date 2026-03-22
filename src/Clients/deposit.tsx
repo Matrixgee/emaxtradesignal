@@ -30,7 +30,7 @@ const Deposit = () => {
   const cryptoAddresses: Record<CryptoMethod, string> = {
     btc: "bc1qpcuq05cscyt42v48gamn28sl0nz0y8nr40m44x",
     eth: "0xc8E3FB13074159514BF74BB200a7edD64656cC7b",
-    usdt: "",
+    usdt: "TXFyJdiLfTTNq1gXMfKqzt8qwfxqu6To5q",
   };
 
   const [selectedMethod, setSelectedMethod] = useState<CryptoMethod>("btc");
@@ -56,7 +56,7 @@ const Deposit = () => {
         icon: <Bitcoin className="w-6 h-6" />,
         color: "from-orange-400 to-orange-600",
         fee: "Free",
-        minDeposit: "$10",
+        minDeposit: "$50",
         processingTime: "5-30 min",
         network: "BTC",
       },
@@ -66,7 +66,7 @@ const Deposit = () => {
         icon: <FaEthereum className="w-6 h-6" />,
         color: "from-blue-400 to-blue-600",
         fee: "Free",
-        minDeposit: "$10",
+        minDeposit: "$50",
         processingTime: "2-15 min",
         network: "ETH",
       },
@@ -76,17 +76,17 @@ const Deposit = () => {
         icon: <SiTether className="w-6 h-6" />,
         color: "from-blue-400 to-blue-600",
         fee: "Free",
-        minDeposit: "$10",
+        minDeposit: "$50",
         processingTime: "1-10 min",
         network: "TRC20",
       },
     ],
-    []
+    [],
   );
 
   const selectedPaymentMethod = useMemo(
     () => paymentMethods.find((m) => m.id === selectedMethod),
-    [paymentMethods, selectedMethod]
+    [paymentMethods, selectedMethod],
   );
 
   const isValidAmount = useMemo(() => {
@@ -146,7 +146,7 @@ const Deposit = () => {
     setShowPreview(false);
     // Clear file input
     const fileInput = document.getElementById(
-      "proof-upload"
+      "proof-upload",
     ) as HTMLInputElement | null;
     if (fileInput) fileInput.value = "";
   };
@@ -190,7 +190,7 @@ const Deposit = () => {
       const error = err as AxiosError<{ message?: string }>;
       toast.error(
         error.response?.data?.message ||
-          "Something went wrong. Please try again."
+          "Something went wrong. Please try again.",
       );
     } finally {
       setIsLoading(false);
